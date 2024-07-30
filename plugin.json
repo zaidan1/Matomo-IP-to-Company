@@ -1,7 +1,7 @@
 {
     "name": "IPtoCompany",
     "description": "Get the name of the companies that visit your website.",
-    "version": "1.2.2",
+    "version": "2.0.1",
     "theme": false,
     "stylesheet": "stylesheets/iptocompany.less",
     "require": {
@@ -9,19 +9,24 @@
     },
     "authors": [
         {
+            "name": "Mo Zaidan",
+            "email": "infoz777@gmail.com",
+            "homepage": "https:\/\/www.github.com\/zaidan1\/"
+        },
+        {
             "name": "Romain Biard",
             "email": "romain.biard@gmail.com",
             "homepage": "https:\/\/www.linkedin.com\/in\/rbiard\/"
         }
     ],
     "support": {
-        "email": "romain.biard@gmail.com",
-        "issues": "https:\/\/github.com\/Romain\/Matomo-IP-to-Company\/issues",
+        "email": "infoz777@gmail.com",
+        "issues": "https:\/\/github.com\/zaidan1\/Matomo-IP-to-Company\/issues",
         "forum": "https:\/\/forum.matomo.org",
-        "wiki": "https:\/\/github.com\/Romain\/Matomo-IP-to-Company\/wiki",
-        "source": "https:\/\/github.com\/Romain\/Matomo-IP-to-Company"
+        "wiki": "https:\/\/github.com\/zaidan1\/Matomo-IP-to-Company\/wiki",
+        "source": "https:\/\/github.com\/zaidan1\/Matomo-IP-to-Company"
     },
-    "homepage": "https:\/\/github.com\/Romain\/Matomo-IP-to-Company",
+    "homepage": "https:\/\/github.com\/zaidan1\/Matomo-IP-to-Company",
     "license": "GPL v3+",
     "keywords": [
         "ip",
