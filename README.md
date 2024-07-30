@@ -1,5 +1,9 @@
 # Matomo IPtoCompany Plugin
-
+This fork is under development. Please make a backup of your Matomo installation before testing this plugin.
+> New in version 2.0.1
+> - Support Matomo 5.X and IPRegistry
+> - Support Default Service (default: IPRegistry)
+> - support arabic language
 > New in version 0.3.0
 > - Daily email report containing the list of companies that visited your website
 
