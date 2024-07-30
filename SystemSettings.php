@@ -66,7 +66,7 @@ class SystemSettings extends \Piwik\Settings\Plugin\SystemSettings
         $field->title = Piwik::translate('IPtoCompany_defaultService');
         $field->uiControl = 'select'; // Use 'select' as the control type
         $field->availableValues = $options;
-        $field->description = Piwik::translate('IPtoCompany_PasteYourAccessToken');
+        $field->description = Piwik::translate('IPtoCompany_defaultService');
         // $field->validators[] = new NotEmpty();
       });
     }
