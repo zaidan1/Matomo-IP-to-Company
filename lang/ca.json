@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "Subscriu-te als informes per correu electrònic",
         "Type": "Tipus",
         "WantToReceiveDailyReport": "Vull rebre els informes diaris per correu electrònic amb el nom de l'empresa que ha visitat els meus llocs web.",
+	"defaultService": "Servei per defecte",
+        "YourIPRegistryAccessToken": "El teu testimoni d'accés de IPRegistry.co",
         "YourIPInfoAccessToken": "El vostre testimoni d'accés proporcionat per IPinfo.io"
     }
 }

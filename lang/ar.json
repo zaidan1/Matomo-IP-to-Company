@@ -1,1 +1,28 @@
-{}
+{
+    "IPtoCompany": {
+        "City": "مدينة",
+        "Companies": "شركات",
+        "CompaniesReportSubject": "[%1$s] تقريرك اليومي / الشركات",
+        "Company": "شركة",
+        "Country": "دولة",
+        "Device": "جهاز",
+        "FindBelowCompaniesReport": "فيما يلي تقرير الشركات لليوم السابق.",
+        "HaveANiceDay": "أتمنى لك يوما سعيدا!",
+        "Hi": "مرحبًا,",
+        "LastVisit": "آخر زيارة",
+        "LastVisitDuration": "مدة آخر زيارة",
+        "LifeTimeOfCacheForResultsInWeeks": "عدد الأسابيع التي يجب تخزين النتائج المرسلة مؤقتًا فيها.",
+        "NoOneVisitedWebsiteYesterday": "نعتذر، لكن لم يقم أحد بزيارة موقعك الإلكتروني بالأمس...",
+        "NumberOfVisits": "عدد الزيارات",
+        "PasteYourAccessToken": "الصق رمز الوصول الخاص بك في الحقل أدناه.",
+        "ReferrerName": "اسم المحيل",
+        "ReferrerType": "نوع المحيل",
+        "SubscribeToEmailReport": "اشترك في تقارير البريد الإلكتروني",
+        "Type": "نوع",
+        "defaultService": "الخدمة الافتراضية",
+        "WantToReceiveDailyReport": "أود أن أتلقى تقارير يومية عبر البريد الإلكتروني بأسماء الشركات التي زارت مواقعي الإلكترونية.",
+        "YourIPRegistryAccessToken": "ﺮﻣﺯ ﺎﻟﻮﺻﻮﻟ ﺎﻠﺧﺎﺻ ﺐﻛ ﻢﻧ IPRegistry.co",
+        "YourIPInfoAccessToken": "رمز الوصول الخاص بك من IPinfo.io"
+    }
+}
+

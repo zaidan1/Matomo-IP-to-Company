@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "Абонирайте се за отчетите по имейл",
         "Type": "Тип",
         "WantToReceiveDailyReport": "Искам да получавам ежедневните отчети по имейл с името на компанията, която е посетила моите уебсайтове.",
+	"defaultService": "Основна услуга",
+	"YourIPRegistryAccessToken": "Вашият IPRegistry.co токен за достъп",
         "YourIPInfoAccessToken": "Вашият токен за достъп до IPinfo.io"
     }
 }

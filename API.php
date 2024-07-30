@@ -100,12 +100,6 @@ class API extends \Piwik\Plugin\API
                     'city'   => $visitRow->getColumn('city'),
                 ));
             }
-
-            // if there is a row, increment the counter
-            /*else {
-                $counter = $ipRow->getColumn('nb_visits');
-                $ipRow->setColumn('nb_visits', $counter + 1);
-            }*/
         }
 
         return $result;
@@ -158,14 +152,16 @@ class API extends \Piwik\Plugin\API
                     $ipList[$ip]    = $item['as_name'];
                     $itemFound      = TRUE;
                 }
-                elseif(($item['ip'] == $ip) && ($itemDate < $delay)) {
+                elseif(($item['ip'] == $ip) && ($itemDate < $delay)) 
+		{
                     $companyDetails = $this->getCompanyDetails($ip);
                     $companyName    = $companyDetails['as_name'];
                     $itemFound      = $companyName ? TRUE : FALSE;
                     $ipList[$ip]    = $companyName ? $companyName : ($hostname === $ip ? EMPTY_HOSTNAME : $hostname);
 
                     // We update the DB only if we got results from the getCompanyDetails method.
-                    if(($ipList[$ip] != $hostname) && $companyName) {
+                    if(($ipList[$ip] != $hostname) && $companyName) 
+		    {
                         $this->updateCompanyDetails($item, [
                             'as_number' => $companyDetails['as_number'],
                             'as_name'   => $companyDetails['as_name']
@@ -176,14 +172,16 @@ class API extends \Piwik\Plugin\API
         }
 
         // If the IP doesn't exist in the DB, and if it is a valid IP, try to get the details
-        if(!isset($ipList[$ip]) && !$itemFound && filter_var($ip, FILTER_VALIDATE_IP)) {
+        if(!isset($ipList[$ip]) && !$itemFound && filter_var($ip, FILTER_VALIDATE_IP)) 
+	{
             $companyDetails = $this->getCompanyDetails($ip);
             $companyName    = $companyDetails['as_name'];
             $itemFound      = $companyName ? TRUE : FALSE;
             $ipList[$ip]    = $companyName ? $companyName : ($hostname === $ip ? EMPTY_HOSTNAME : $hostname);
 
             // We insert the item in the DB only if we got results from the getCompanyDetails method.
-            if(($ipList[$ip] != $hostname) && $companyName) {
+            if(($ipList[$ip] != $hostname) && $companyName) 
+	    {
                 $this->insertCompanyDetails([
                     'ip'        => $ip,
                     'as_number' => $companyDetails['as_number'],
@@ -193,7 +191,8 @@ class API extends \Piwik\Plugin\API
         }
 
         // If the IP is not valid, just return the empty hostname
-        elseif(!filter_var($ip, FILTER_VALIDATE_IP)) {
+        elseif(!filter_var($ip, FILTER_VALIDATE_IP)) 
+	{
             $ipList[$ip] = EMPTY_HOSTNAME;
         }
 
@@ -209,42 +208,45 @@ class API extends \Piwik\Plugin\API
     private function getCompanyDetails($ip)
     {
         $ipInfo         = new IPInfo();
-
         // If no token has been set, stop here.
-        if(!$ipInfo->accessToken) {
+        if(!$ipInfo->accessToken) 
+	{
             return [
                 "as_name"   => NULL,
                 "as_number" => NULL
             ];
         }
 
-        try {
+        try 
+	{
             $details        = $ipInfo->getDetails($ip);
-        } catch (\Exception $e) {
+        } 
+	catch (\Exception $e) 
+	{
             return [
                 "as_name"   => NULL,
                 "as_number" => NULL
             ];
         }
-
         $details        = json_decode($details);
         $companyName    = NULL;
         $asNumber       = NULL;
 
-        if(isset($details->company) && isset($details->company->name)) {
+        if(isset($details->company) && isset($details->company->name)) 
+	{
             $companyName = $details->company->name;
 
             if($details->company->domain) {
                 $companyName .= " (" . $details->company->domain . ")";
             }
         }
-        elseif(isset($details->org) && !isset($details->org->name)) {
+        elseif(isset($details->org) && !isset($details->org->name)) 
+	{
             $orgElements    = explode(" ", $details->org);
             $asNumber       = array_shift($orgElements);
             $asName         = count($orgElements) > 1 ? implode(" ", $orgElements) : $orgElements[0];
             $companyName    = $asName;
         }
-
         return [
             "as_name"   => $companyName,
             "as_number" => $asNumber
@@ -261,12 +263,7 @@ class API extends \Piwik\Plugin\API
     {
         try {
             // If the server is running PHP 7.4.0 or newer
-            if($this->isPHPVersionMoreRecentThan("7.4.0")) {
-                $asName = filter_var($data['as_name'], FILTER_SANITIZE_ADD_SLASHES);
-            }
-            else {
-                $asName = filter_var($data['as_name'], FILTER_SANITIZE_MAGIC_QUOTES);
-            }
+            $asName = filter_var($data['as_name'], FILTER_SANITIZE_ADD_SLASHES);
 
             $sql = "UPDATE " . Common::prefixTable('ip_to_company') . "
                 SET as_number = '{$data['as_number']}', as_name = '{$asName}'
@@ -287,12 +284,7 @@ class API extends \Piwik\Plugin\API
     private function insertCompanyDetails($data)
     {
         try {
-            if($this->isPHPVersionMoreRecentThan("7.4.0")) {
-                $asName = filter_var($data['as_name'], FILTER_SANITIZE_ADD_SLASHES);
-            }
-            else {
-                $asName = filter_var($data['as_name'], FILTER_SANITIZE_MAGIC_QUOTES);
-            }
+            $asName = filter_var($data['as_name'], FILTER_SANITIZE_ADD_SLASHES);
             $sql = "INSERT INTO " . Common::prefixTable('ip_to_company') . "
                 (ip, as_number, as_name) VALUES
                 ('{$data['ip']}', '{$data['as_number']}', '{$asName}')";
@@ -328,3 +320,4 @@ class API extends \Piwik\Plugin\API
         return TRUE;
     }
 }
+

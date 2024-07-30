@@ -2,16 +2,28 @@
     "IPtoCompany": {
         "City": "Città",
         "Companies": "Aziende",
-        "CompaniesReportSubject": "[%1$s] Il tuo rapporto quotidiano / Aziende",
+        "CompaniesReportSubject": "[%1$s] Il tuo report giornaliero / Aziende",
         "Company": "Azienda",
-        "Country": "Stato",
+        "Country": "Paese",
         "Device": "Dispositivo",
-        "FindBelowCompaniesReport": "Di seguito trovate il Rapporto Aziende per la giornata di ieri.",
+        "FindBelowCompaniesReport": "Di seguito troverai il report delle aziende per il giorno di ieri.",
         "HaveANiceDay": "Buona giornata!",
         "Hi": "Ciao,",
         "LastVisit": "Ultima visita",
-        "LastVisitDuration": "Durata ultima visita",
+        "LastVisitDuration": "Durata dell'ultima visita",
         "LifeTimeOfCacheForResultsInWeeks": "Numero di settimane durante le quali i risultati restituiti devono essere memorizzati nella cache.",
-        "NoOneVisitedWebsiteYesterday": "Siamo spiacenti, ma nessuno ha visitato il tuo sito web ieri…"
+        "NoOneVisitedWebsiteYesterday": "Ci dispiace, ma nessuno ha visitato il tuo sito web ieri...",
+        "NumberOfVisits": "Numero di visite",
+        "PasteYourAccessToken": "Incolla il tuo token di accesso nel campo sottostante.",
+        "ReferrerName": "Nome del referrer",
+        "ReferrerType": "Tipo di referrer",
+        "SubscribeToEmailReport": "Iscriviti ai report via email",
+        "Type": "Tipo",
+        "defaultService": "Servizio predefinito",
+        "WantToReceiveDailyReport": "Voglio ricevere i report giornalieri via email con il nome dell'azienda che ha visitato i miei siti web.",
+	"defaultService": "Servizio predefinito",
+        "YourIPRegistryAccessToken": "Il tuo token di accesso di IPRegistry.co",
+        "YourIPInfoAccessToken": "Il tuo token di accesso di IPinfo.io"
     }
 }
+

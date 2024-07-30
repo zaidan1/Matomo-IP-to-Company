@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "Berlangganan laporan surel",
         "Type": "Tipe",
         "WantToReceiveDailyReport": "Saya ingin menerima laporan harian melalui surel dengan nama perusahaan yang mengunjungi situs web saya.",
+	"defaultService": "Layanan Default",
+	"YourIPRegistryAccessToken": "Token akses IPRegistry.co Anda",
         "YourIPInfoAccessToken": "Token akses IPinfo.io Anda"
     }
 }

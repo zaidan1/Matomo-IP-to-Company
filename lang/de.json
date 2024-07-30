@@ -19,7 +19,9 @@
         "ReferrerType": "Referrer Typ",
         "SubscribeToEmailReport": "Abonnieren Sie die E-Mail-Berichte",
         "Type": "Typ",
+        "defaultService": "Default Service",
         "WantToReceiveDailyReport": "Ich möchte tägliche Berichte per E-Mail mit dem Namen des Unternehmens erhalten, das meine Websites besucht hat.",
+        "YourIPRegistryAccessToken": "Ihr IPRegistry.co Zugangsschlüssel (Token)",
         "YourIPInfoAccessToken": "Ihr IPinfo.io Zugangsschlüssel (Token)"
     }
 }

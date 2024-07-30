@@ -19,7 +19,9 @@
         "ReferrerType": "Referrer type",
         "SubscribeToEmailReport": "Subscribe to the email reports",
         "Type": "Type",
+        "defaultService": "Default Service",
         "WantToReceiveDailyReport": "I want to receive the daily reports by email with the name of the company that visited my websites.",
-        "YourIPInfoAccessToken": "Your IPinfo.io access token"
+        "YourIPInfoAccessToken": "Your IPinfo.io access token",
+        "YourIPRegistryAccessToken": "Your IPRegistry.co access token"
     }
 }

@@ -1,37 +1,43 @@
 <?php
-/**
- * Piwik - free/libre analytics platform
- *
- * @link https://matomo.org
- * @license http://www.gnu.org/licenses/gpl-3.0.html GPL v3 or later
- */
-
 namespace Piwik\Plugins\IPtoCompany\libraries;
 
 use Piwik\Settings\Setting;
 
-/**
- * Defines Settings for IPtoCompany.
- *
- * Usage like this:
- * $settings = new SystemSettings();
- * $settings->metric->getValue();
- * $settings->description->getValue();
- */
 class IPInfo
 {
     const API_URL = 'https://ipinfo.io';
+    const ipRegistry_URL = 'https://api.ipregistry.co';
     const COUNTRIES_FILE_DEFAULT = __DIR__ . '/../data/countries.json';
     const REQUEST_TYPE_GET = 'GET';
     const STATUS_CODE_QUOTA_EXCEEDED = 429;
 
+    // Explicitly define properties
+    public $API_URL;
     public $accessToken;
+    public $default_service;
+    public $countries;
 
     public function __construct($settings = [])
     {
         // Get the access token
         $systemSettings = new \Piwik\Plugins\IPtoCompany\SystemSettings();
-        $accessToken = $systemSettings->ipInfoAccessToken->getValue();
+	if($systemSettings->defaultService->getValue() == 'IpRegistry.co')
+	{
+          $accessToken = $systemSettings->ipRegistryAccessToken->getValue();
+	  $this->API_URL='https://api.ipregistry.co';
+	}
+	elseif($systemSettings->defaultService->getValue() == 'IpInfo.io')
+	{
+          $accessToken = $systemSettings->ipInfoAccessToken->getValue();
+	  $this->API_URL='https://ipinfo.io';
+	}
+	else
+	{
+          $accessToken = $systemSettings->ipRegistryAccessToken->getValue();
+	  $this->API_URL='https://api.ipregistry.co';
+	}
+    	$this->default_service= $systemSettings->defaultService->getValue();
+	
         $this->accessToken = $accessToken;
 
         // Get the list of countries
@@ -47,9 +53,12 @@ class IPInfo
      */
     public function getDetails($ip_address = null)
     {
-        try {
+        try 
+	{
             $responseDetails = $this->getRequestDetails((string) $ip_address);
-        } catch (\Exception $e) {
+        } 
+	catch (\Exception $e) 
+	{
             throw new \Exception($e->getMessage());
         }
 
@@ -66,18 +75,20 @@ class IPInfo
         $country = $details['country'] ?? null;
         $details['country_name'] = $this->countries[$country] ?? null;
 
-        if (array_key_exists('loc', $details)) {
+        if (array_key_exists('loc', $details)) 
+	{
             $coords = explode(',', $details['loc']);
             $details['latitude'] = $coords[0];
             $details['longitude'] = $coords[1];
-        } else {
+        }
+	else 
+	{
             $details['latitude'] = null;
             $details['longitude'] = null;
         }
 
         return json_encode($details);
     }
-
 
     /**
      * Get details for a specific IP address.
@@ -89,22 +100,23 @@ class IPInfo
     {
         $httpCode = 0;
         $response = NULL;
-        $url = self::API_URL;
+        $url = $this->API_URL;
 
-        if ($ip_address) {
-            $url .= "/$ip_address";
+        if ($ip_address && $this->accessToken) 
+	{
+             $url .= "/$ip_address?key=". $this->accessToken;
         }
 
-        try {
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, $url);
+        try 
+	{
+            $ch = curl_init($url);
+	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response as a string
             curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildHeaders());
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
             $result = curl_exec($ch);
 
             // Check if any error occurred
-            if (!curl_errno($ch)) {
+            if (!curl_errno($ch)) 
+	    {
                 $info = curl_getinfo($ch);
                 $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             }
@@ -112,7 +124,9 @@ class IPInfo
             curl_close($ch);
 
             $response = json_decode($result, TRUE);
-        } catch (\Exception $e) {
+        } 
+	catch (\Exception $e) 
+	{
             throw new \Exception($e->getMessage());
         }
 
@@ -123,10 +137,8 @@ class IPInfo
                 'status' => $httpCode
             ]));
         }
-
         return $response;
     }
-
 
     /**
      * Build headers for API request.
@@ -139,8 +151,9 @@ class IPInfo
             'accept' => 'application/json',
         ];
 
-        if ($this->accessToken) {
-            $headers['authorization'] = "Authorization: Bearer " . $this->accessToken;
+        if ($this->accessToken) 
+	{
+       #     $headers['authorization'] = "Authorization: Bearer " . $this->accessToken;
         }
 
         return $headers;
@@ -157,3 +170,4 @@ class IPInfo
         return json_decode($file_contents, true);
     }
 }
+

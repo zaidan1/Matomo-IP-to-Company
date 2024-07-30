@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "Suscribete a los informes",
         "Type": "Tipo",
         "WantToReceiveDailyReport": "Quiero recibir los informes cotidianos por email con la lista de empresas que visitaron mis sitios web.",
+	"defaultService": "Servicio predeterminado",
+	"YourIPRegistryAccessToken": "Tu token de acceso de IPRegistry.co",
         "YourIPInfoAccessToken": "Su ficha de acceso de IPinfo.io"
     }
 }

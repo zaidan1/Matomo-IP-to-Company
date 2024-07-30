@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "訂閱 Email 報表",
         "Type": "類型",
         "WantToReceiveDailyReport": "我想透過 Email 接收包含訪問過我網站的公司名稱的每日報表。",
+	"defaultService": "默認服務",
+        "YourIPRegistryAccessToken": "您的 IPRegistry.co 訪問令牌",
         "YourIPInfoAccessToken": "你的 IPinfo.io 存取權杖"
     }
 }

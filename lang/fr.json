@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "Abonnez-vous aux rapports par e-mail",
         "Type": "Type",
         "WantToReceiveDailyReport": "Je veux recevoir des rapports quotidiens par email avec la liste des sociétés qui ont visité mes sites web.",
+	"defaultService": "Service par défaut",
+	"YourIPRegistryAccessToken": "Votre jeton d'accès IPRegistry.co",
         "YourIPInfoAccessToken": "Votre jeton d'accès fourni par IPinfo.io"
     }
 }

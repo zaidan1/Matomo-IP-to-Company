@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "E-posta raporlarına abone ol",
         "Type": "Tür",
         "WantToReceiveDailyReport": "Web sitelerimi ziyaret eden kuruluşun adıyla e-posta ile günlük raporlar almak istiyorum.",
+	"defaultService": "Varsayılan Servis",
+	"YourIPRegistryAccessToken": "IPRegistry.co erişim jetonunuz",
         "YourIPInfoAccessToken": "IPinfo.io erişim kodunuz"
     }
 }

@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "Εγγραφείτε για αναφορές μέσω ηλεκτρονικής αλληλογραφίας",
         "Type": "Τύπος",
         "WantToReceiveDailyReport": "Θέλω να λαμβάνω τις καθημερινές αναφορές με ηλεκτρονική αλληλογραφία με το όνομα της εταιρίας που επισκέφτηκε τους ιστοτόπους μου.",
+	"defaultService": "Προεπιλεγμένη υπηρεσία",
+	"YourIPRegistryAccessToken": "Το διακριτικό πρόσβασης του IPRegistry.co σας",
         "YourIPInfoAccessToken": "Το τεκμήριο πρόσβασής σας του IPinfo.io"
     }
 }

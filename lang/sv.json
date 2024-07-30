@@ -20,6 +20,8 @@
         "SubscribeToEmailReport": "Prenumerera på e-postrapporter",
         "Type": "Typ",
         "WantToReceiveDailyReport": "Jag vill få dagliga rapporter via e-post om företag/domäner som besökt sajterna.",
+	"defaultService": "Standardtjänst",
+	"YourIPRegistryAccessToken": "Din IPRegistry.co åtkomsttoken",
         "YourIPInfoAccessToken": "Din IPinfo.io access-token"
     }
 }
