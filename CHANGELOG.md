@@ -1,4 +1,10 @@
 ## Changelog
+### 2.0.1
+[2024-07-30]
+
+- Support for Matomo 5.X and IPRegistry
+- Support for default service (default: IPRegistry)
+- Support for Arabic language
 
 ### 1.2.2
 
