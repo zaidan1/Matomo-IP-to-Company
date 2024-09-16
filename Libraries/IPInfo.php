@@ -98,47 +98,79 @@ class IPInfo
      */
     private function getRequestDetails(string $ip_address)
     {
-        $httpCode = 0;
-        $response = NULL;
-        $url = $this->API_URL;
+    $httpCode = 0;
+    $response = NULL;
+    $url = $this->API_URL;
 
-        if ($ip_address && $this->accessToken) 
-	{
-             $url .= "/$ip_address?key=". $this->accessToken;
-        }
-
-        try 
-	{
-            $ch = curl_init($url);
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response as a string
-            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildHeaders());
-            $result = curl_exec($ch);
-
-            // Check if any error occurred
-            if (!curl_errno($ch)) 
-	    {
-                $info = curl_getinfo($ch);
-                $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-            }
-
-            curl_close($ch);
-
-            $response = json_decode($result, TRUE);
-        } 
-	catch (\Exception $e) 
-	{
-            throw new \Exception($e->getMessage());
-        }
-
-        if ($httpCode == self::STATUS_CODE_QUOTA_EXCEEDED) {
-            throw new \Exception('IPinfo request quota exceeded.');
-        } elseif ($httpCode >= 400) {
-            throw new \Exception('Exception: ' . json_encode([
-                'status' => $httpCode
-            ]));
-        }
-        return $response;
+    if ($ip_address && $this->accessToken) 
+    {
+        $url .= "/$ip_address?key=". $this->accessToken;
     }
+
+    try 
+    {
+        $ch = curl_init($url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Return the response as a string
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $this->buildHeaders());
+
+        // Set proxy options here
+        $proxy = $this->getProxySettings();
+        if ($proxy) {
+            curl_setopt($ch, CURLOPT_PROXY, $proxy['host']);
+            curl_setopt($ch, CURLOPT_PROXYPORT, $proxy['port']);
+            if (!empty($proxy['user']) && !empty($proxy['password'])) {
+                curl_setopt($ch, CURLOPT_PROXYUSERPWD, "{$proxy['user']}:{$proxy['password']}");
+            }
+        }
+
+        $result = curl_exec($ch);
+
+        // Check if any error occurred
+        if (!curl_errno($ch)) 
+        {
+            $info = curl_getinfo($ch);
+            $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        }
+
+        curl_close($ch);
+
+        $response = json_decode($result, TRUE);
+    } 
+    catch (\Exception $e) 
+    {
+        throw new \Exception($e->getMessage());
+    }
+
+    if ($httpCode == self::STATUS_CODE_QUOTA_EXCEEDED) {
+        throw new \Exception('IPinfo request quota exceeded.');
+    } elseif ($httpCode >= 400) {
+        throw new \Exception('Exception: ' . json_encode([
+            'status' => $httpCode
+        ]));
+    }
+    return $response;
+}
+
+/**
+ * Get proxy settings from Matomo configuration.
+ * @return array Proxy settings.
+ */
+private function getProxySettings()
+{
+    // Retrieve proxy settings from Matomo config file
+    $config = \Piwik\Config::getInstance();
+    $proxyConfig = [];
+
+    if (!empty($config->General['proxy_host'])) {
+        $proxyConfig['host'] = $config->General['proxy_host'];
+        $proxyConfig['port'] = $config->General['proxy_port'];
+        $proxyConfig['user'] = $config->General['proxy_user'] ?? '';
+        $proxyConfig['password'] = $config->General['proxy_password'] ?? '';
+    }
+
+    return $proxyConfig;
+}
+
 
     /**
      * Build headers for API request.
