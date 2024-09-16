@@ -161,11 +161,12 @@ private function getProxySettings()
     $config = \Piwik\Config::getInstance();
     $proxyConfig = [];
 
-    if (!empty($config->General['proxy_host'])) {
-        $proxyConfig['host'] = $config->General['proxy_host'];
-        $proxyConfig['port'] = $config->General['proxy_port'];
-        $proxyConfig['user'] = $config->General['proxy_user'] ?? '';
-        $proxyConfig['password'] = $config->General['proxy_password'] ?? '';
+    if (!empty($config->proxy['host'])) 
+    {
+        $proxyConfig['host'] = $config->proxy['host'];
+        $proxyConfig['port'] = $config->proxy['port'];
+        $proxyConfig['user'] = $config->proxy['user'] ?? '';
+        $proxyConfig['password'] = $config->proxy['password'] ?? '';
     }
 
     return $proxyConfig;
